@@ -3,11 +3,8 @@ version: '3'
 services:
   mongo:
     image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
     ports:
-      - "27017:27017"
+      - "1234:27017"
     networks:
       -  task-manager-network
   
@@ -16,7 +13,7 @@ services:
       context: .
       dockerfile: ./TaskManager.WebApi/Dockerfile
     environment:
-      MONGODB_SERVER: mongodb://root:root@0.0.0.0:27017
+      MONGODB_SERVER: mongodb://mongo:27017
       MONGODB_DATABASE: TaskManager
     ports:
       - "8080:80"
