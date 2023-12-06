@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+    networks:
+      -  task-manager-network
+  
+  api:
+    build:
+      context: .
+      dockerfile: ./TaskManager.WebApi/Dockerfile
+    environment:
+      MONGODB_SERVER: mongodb://root:root@0.0.0.0:27017
+      MONGODB_DATABASE: TaskManager
+    ports:
+      - "8080:80"
+    networks:
+      - task-manager-network
+    links:
+      - mongo
+    depends_on:
+      - mongo
+
+networks: 
+    task-manager-network:
+      driver: bridge
