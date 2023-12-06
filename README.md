@@ -33,7 +33,7 @@ Acessar  a url http://localhost:8080/swagger/index.html
 
 # Fase 3: Melhorias
 
-- Caching
-- Authenticação
-- Permissionamento
-- Logs e Monitoria
+- Caching;
+- Authenticação;
+- Permissionamento;
+- Logs e Monitoria;
